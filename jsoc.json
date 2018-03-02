@@ -1,0 +1,689 @@
+{
+  "host": "",
+  "errors": {
+    "error.COMMON_ERROR": {
+      "code": 1001500001,
+      "message": "[COMMON_ERROR]通用错误: ",
+      "data": null
+    },
+    "error.UNAUTHORIZED": {
+      "code": 1001401001,
+      "message": "[UNAUTHORIZED]未授权: ",
+      "data": null
+    },
+    "error.AUTHORIZED_INVALID": {
+      "code": 1001401002,
+      "message": "[AUTHORIZED_INVALID]授权错误: ",
+      "data": null
+    },
+    "error.EVENT_NOT_FOUND": {
+      "code": 1001404001,
+      "message": "[EVENT_NOT_FOUND]没有找到活动详情: ID不对?ID不对?",
+      "data": null
+    },
+    "error.SUBMIT_NOT_FOUND": {
+      "code": 1001404002,
+      "message": "[SUBMIT_NOT_FOUND]没找到报名记录: ID不对?",
+      "data": null
+    },
+    "error.INTERNAL_ERROR": {
+      "code": -1,
+      "message": "[INTERNAL_ERROR]Internal Error: 写入数据错误写入数据错误写入数据错误写入数据错误",
+      "data": null
+    },
+    "error.BAD_REQUEST": {
+      "code": -2,
+      "message": "[BAD_REQUEST]入参检测错误: ",
+      "data": null
+    },
+    "error.NOT_FOUND": {
+      "code": -3,
+      "message": "[NOT_FOUND]not found: ",
+      "data": null
+    }
+  },
+  "apis": {
+    "create_event": {
+      "name": "create_event",
+      "desc": "create_event",
+      "group": "",
+      "request": {
+        "method": "post",
+        "path": "/event",
+        "query": {},
+        "params": {},
+        "body": {
+          "name": {
+            "_type": "string",
+            "_default": "unamed",
+            "_desc": "名字 ",
+            "_length": [
+              1,
+              64
+            ]
+          },
+          "date": {
+            "_type": "string",
+            "_default": "2018-01-01",
+            "_desc": "日期 ",
+            "_length": [
+              10,
+              10
+            ]
+          },
+          "type": {
+            "_type": "enum",
+            "_default": 1,
+            "_desc": "类型 "
+          },
+          "desc": {
+            "_type": "string",
+            "_default": "",
+            "_desc": "描述 ",
+            "_length": [
+              0,
+              255
+            ]
+          },
+          "place": {
+            "_type": "number",
+            "_default": 0,
+            "_desc": " ",
+            "_range": [
+              0,
+              255
+            ]
+          }
+        },
+        "headers": {
+          "token": {
+            "_type": "string",
+            "_default": "token",
+            "_desc": "秘钥 ",
+            "_length": [
+              1,
+              32
+            ]
+          }
+        }
+      },
+      "response": {
+        "body": {
+          "success": [
+            {
+              "code": {
+                "_type": "number",
+                "_assert": 200
+              },
+              "data": {
+                "id": {
+                  "_type": "number"
+                },
+                "name": {
+                  "_type": "string"
+                },
+                "date": {
+                  "_type": "string"
+                },
+                "type": {
+                  "_type": "number"
+                },
+                "desc": {
+                  "_type": "string"
+                },
+                "place": {
+                  "_type": "number"
+                },
+                "createTime": {
+                  "_type": "number"
+                },
+                "updateTime": {
+                  "_type": "number"
+                }
+              },
+              "message": {
+                "_type": "string"
+              }
+            }
+          ],
+          "failed": [
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": -1,
+              "message": "[INTERNAL_ERROR]Internal Error: 写入数据错误写入数据错误写入数据错误写入数据错误",
+              "data": null
+            }
+          ]
+        }
+      }
+    },
+    "create_submit": {
+      "name": "create_submit",
+      "desc": "create_submit",
+      "group": "",
+      "request": {
+        "method": "post",
+        "path": "/event/submit",
+        "query": {},
+        "params": {},
+        "body": {
+          "eventID": {
+            "_type": "number",
+            "_default": 1,
+            "_desc": "活动ID ",
+            "_range": [
+              0,
+              9007199254740991
+            ]
+          },
+          "userID": {
+            "_type": "number",
+            "_default": 1,
+            "_desc": "用户ID ",
+            "_range": [
+              0,
+              9007199254740991
+            ]
+          }
+        },
+        "headers": {
+          "token": {
+            "_type": "string",
+            "_default": "token",
+            "_desc": "秘钥 ",
+            "_length": [
+              1,
+              32
+            ]
+          }
+        }
+      },
+      "response": {
+        "body": {
+          "success": [
+            {
+              "code": {
+                "_type": "number",
+                "_assert": 200
+              },
+              "data": {
+                "id": {
+                  "_type": "number"
+                },
+                "eventID": {
+                  "_type": "number"
+                },
+                "userID": {
+                  "_type": "number"
+                },
+                "status": {
+                  "_type": "number"
+                },
+                "createTime": {
+                  "_type": "number"
+                },
+                "updateTime": {
+                  "_type": "number"
+                }
+              },
+              "message": {
+                "_type": "string"
+              }
+            }
+          ],
+          "failed": [
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": -1,
+              "message": "[INTERNAL_ERROR]Internal Error: 写入数据错误写入数据错误写入数据错误写入数据错误",
+              "data": null
+            }
+          ]
+        }
+      }
+    },
+    "update_event": {
+      "name": "update_event",
+      "desc": "update_event",
+      "group": "",
+      "request": {
+        "method": "put",
+        "path": "/event/{ID}",
+        "query": {},
+        "params": {
+          "ID": {
+            "_type": "number",
+            "_default": 1,
+            "_desc": "ID ",
+            "_range": [
+              0,
+              9007199254740991
+            ]
+          }
+        },
+        "body": {
+          "name": {
+            "_type": "string",
+            "_default": "",
+            "_desc": "名字 ",
+            "_length": [
+              0,
+              64
+            ]
+          },
+          "date": {
+            "_type": "string",
+            "_default": "",
+            "_desc": "日期 ",
+            "_length": [
+              0,
+              10
+            ]
+          },
+          "type": {
+            "_type": "enum",
+            "_default": 0,
+            "_desc": "类型 "
+          },
+          "desc": {
+            "_type": "string",
+            "_default": "",
+            "_desc": "描述 ",
+            "_length": [
+              0,
+              255
+            ]
+          },
+          "place": {
+            "_type": "number",
+            "_default": 0,
+            "_desc": " ",
+            "_range": [
+              0,
+              255
+            ]
+          }
+        },
+        "headers": {
+          "token": {
+            "_type": "string",
+            "_default": "token",
+            "_desc": "秘钥 ",
+            "_length": [
+              1,
+              32
+            ]
+          }
+        }
+      },
+      "response": {
+        "body": {
+          "success": [
+            {
+              "code": {
+                "_type": "number",
+                "_assert": 200
+              },
+              "data": {
+                "id": {
+                  "_type": "number"
+                },
+                "name": {
+                  "_type": "string"
+                },
+                "date": {
+                  "_type": "string"
+                },
+                "type": {
+                  "_type": "number"
+                },
+                "desc": {
+                  "_type": "string"
+                },
+                "place": {
+                  "_type": "number"
+                },
+                "createTime": {
+                  "_type": "number"
+                },
+                "updateTime": {
+                  "_type": "number"
+                }
+              },
+              "message": {
+                "_type": "string"
+              }
+            }
+          ],
+          "failed": [
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001404001,
+              "message": "[EVENT_NOT_FOUND]没有找到活动详情: ID不对?ID不对?",
+              "data": null
+            },
+            {
+              "code": -1,
+              "message": "[INTERNAL_ERROR]Internal Error: 写入数据错误写入数据错误写入数据错误写入数据错误",
+              "data": null
+            }
+          ]
+        }
+      }
+    },
+    "update_submit": {
+      "name": "update_submit",
+      "desc": "update_submit",
+      "group": "",
+      "request": {
+        "method": "put",
+        "path": "/event/submit/{ID}",
+        "query": {},
+        "params": {
+          "ID": {
+            "_type": "number",
+            "_default": 1,
+            "_desc": "ID ",
+            "_range": [
+              0,
+              9007199254740991
+            ]
+          }
+        },
+        "body": {
+          "status": {
+            "_type": "enum",
+            "_default": 1,
+            "_desc": "状态 "
+          }
+        },
+        "headers": {
+          "token": {
+            "_type": "string",
+            "_default": "token",
+            "_desc": "秘钥 ",
+            "_length": [
+              1,
+              32
+            ]
+          }
+        }
+      },
+      "response": {
+        "body": {
+          "success": [
+            {
+              "code": {
+                "_type": "number",
+                "_assert": 200
+              },
+              "data": {
+                "id": {
+                  "_type": "number"
+                },
+                "eventID": {
+                  "_type": "number"
+                },
+                "userID": {
+                  "_type": "number"
+                },
+                "status": {
+                  "_type": "NOT_SURE"
+                },
+                "createTime": {
+                  "_type": "number"
+                },
+                "updateTime": {
+                  "_type": "number"
+                }
+              },
+              "message": {
+                "_type": "string"
+              }
+            }
+          ],
+          "failed": [
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001404002,
+              "message": "[SUBMIT_NOT_FOUND]没找到报名记录: ID不对?",
+              "data": null
+            },
+            {
+              "code": -1,
+              "message": "[INTERNAL_ERROR]Internal Error: 写入数据错误写入数据错误写入数据错误写入数据错误",
+              "data": null
+            }
+          ]
+        }
+      }
+    },
+    "event_profile": {
+      "name": "event_profile",
+      "desc": "event_profile",
+      "group": "",
+      "request": {
+        "method": "get",
+        "path": "/event/{ID}",
+        "query": {},
+        "params": {
+          "ID": {
+            "_type": "number",
+            "_default": 1,
+            "_desc": "ID ",
+            "_range": [
+              0,
+              9007199254740991
+            ]
+          }
+        },
+        "body": {},
+        "headers": {
+          "token": {
+            "_type": "string",
+            "_default": "token",
+            "_desc": "秘钥 ",
+            "_length": [
+              1,
+              32
+            ]
+          }
+        }
+      },
+      "response": {
+        "body": {
+          "success": [
+            {
+              "code": {
+                "_type": "number",
+                "_assert": 200
+              },
+              "data": {
+                "id": {
+                  "_type": "number"
+                },
+                "name": {
+                  "_type": "string"
+                },
+                "date": {
+                  "_type": "string"
+                },
+                "type": {
+                  "_type": "number"
+                },
+                "desc": {
+                  "_type": "string"
+                },
+                "place": {
+                  "_type": "number"
+                },
+                "createTime": {
+                  "_type": "number"
+                },
+                "updateTime": {
+                  "_type": "number"
+                }
+              },
+              "message": {
+                "_type": "string"
+              }
+            }
+          ],
+          "failed": [
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001401001,
+              "message": "[UNAUTHORIZED]未授权: ",
+              "data": null
+            },
+            {
+              "code": 1001401002,
+              "message": "[AUTHORIZED_INVALID]授权错误: ",
+              "data": null
+            },
+            {
+              "code": 1001404001,
+              "message": "[EVENT_NOT_FOUND]没有找到活动详情: ID不对?ID不对?",
+              "data": null
+            }
+          ]
+        }
+      }
+    }
+  }
+}
