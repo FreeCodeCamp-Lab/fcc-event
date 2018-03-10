@@ -121,6 +121,24 @@ class Submit {
     });
   }
 
+  static fetchByEventIDUserID(eventID, userID, page=1, pageSize=10){
+    let sql = 'select * from `submit` where `event_id`=:eventID and `user_id`=:userID order by `id` desc limit '+((page-1)*pageSize)+','+pageSize+'';
+    //@row
+    return new Promise((resolved, rejected) => {
+      Connection.query({sql:sql, params:{eventID: eventID, userID: userID}}, (e ,r)=>{
+        if(e){
+          rejected(e);
+        }else{
+          if(r[0]){
+            resolved(new Submit(r[0]));
+          }else{
+            resolved(null);
+          }
+        }
+      });
+    });
+  }
+
   static fetchByAttr(data={}, page=1, pageSize=10){
     let allowKey = ['id','event_id','user_id','status','create_time','update_time'];
     let sql = 'select * from `submit` where 1 ';
@@ -283,7 +301,7 @@ class Submit {
     return new Promise((resolved, rejected) => {
       let sql = `update \`${TableName}\` set `;
       let data = this.data();
-      data.updateTime = data.updateTime||Number.parseInt(Date.now()/1000);
+      data.updateTime = Number.parseInt(Date.now()/1000);
       let fields = [];
       for(let k in data){
         if(k==='id' || data[k]===null){

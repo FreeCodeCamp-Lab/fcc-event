@@ -33,24 +33,6 @@ class Event {
     });
   }
 
-  static fetchByName(name, page=1, pageSize=10){
-    let sql = 'select * from `event` where `name`=:name order by `id` desc limit '+((page-1)*pageSize)+','+pageSize+'';
-    //@list
-    return new Promise((resolved, rejected) => {
-      Connection.query({sql:sql, params:{name: name}}, (e ,r)=>{
-        if(e){
-          rejected(e);
-        }else{
-          let result = [];
-          for(let k in r) {
-            result.push(new Event(r[k]));
-          }
-          resolved(result);
-        }
-      });
-    });
-  }
-
   static fetchByDate(date, page=1, pageSize=10){
     let sql = 'select * from `event` where `date`=:date order by `id` desc limit '+((page-1)*pageSize)+','+pageSize+'';
     //@list
@@ -123,8 +105,26 @@ class Event {
     });
   }
 
+  static fetchByName(name, page=1, pageSize=10){
+    let sql = 'select * from `event` where `name`=:name order by `id` desc limit '+((page-1)*pageSize)+','+pageSize+'';
+    //@row
+    return new Promise((resolved, rejected) => {
+      Connection.query({sql:sql, params:{name: name}}, (e ,r)=>{
+        if(e){
+          rejected(e);
+        }else{
+          if(r[0]){
+            resolved(new Event(r[0]));
+          }else{
+            resolved(null);
+          }
+        }
+      });
+    });
+  }
+
   static fetchByAttr(data={}, page=1, pageSize=10){
-    let allowKey = ['id','name','date','place','create_time','update_time'];
+    let allowKey = ['id','date','place','create_time','update_time','name'];
     let sql = 'select * from `event` where 1 ';
     if(Object.keys(data).length===0){
       throw new Error('data param required');
@@ -291,7 +291,7 @@ class Event {
     return new Promise((resolved, rejected) => {
       let sql = `update \`${TableName}\` set `;
       let data = this.data();
-      data.updateTime = data.updateTime||Number.parseInt(Date.now()/1000);
+      data.updateTime = Number.parseInt(Date.now()/1000);
       let fields = [];
       for(let k in data){
         if(k==='id' || data[k]===null){

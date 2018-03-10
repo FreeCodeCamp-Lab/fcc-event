@@ -12,6 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "xiaolan": "^1.6.18"
+    "xiaolan": "^1.6.20"
+  },
+  "devDependencies": {
+    "request-agent": "^1.0.3"
   }
 }
