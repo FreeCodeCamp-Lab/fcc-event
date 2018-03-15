@@ -6,6 +6,7 @@
   "scripts": {
     "build": "frog build && exit 0",
     "test":"exit 0",
+    "start":"node server.js",
     "dev": "frog build && node server.js",
     "touch": "frog touch && exit 0"
   },
