@@ -138,7 +138,12 @@ class Event {
       }else{
         throw new Error('Not Allow Fetching By [ "'+k+'" ]');
       }
-      sql += ' and `'+field+'`=:'+k+'';
+      if (Array.isArray(data[k]) && data[k].length) {
+        sql += ' and `'+field+'` in ("'+data[k].join('","')+'")';
+      } else {
+        sql += ' and `'+field+'`=:'+k+'';
+      }
+      
     }
     sql += ' order by `id` desc limit '+((page-1)*pageSize)+','+pageSize;
     //@list
@@ -291,7 +296,7 @@ class Event {
     return new Promise((resolved, rejected) => {
       let sql = `update \`${TableName}\` set `;
       let data = this.data();
-      data.updateTime = Number.parseInt(Date.now()/1000);
+      data.updateTime = data.updateTime||Number.parseInt(Date.now()/1000);
       let fields = [];
       for(let k in data){
         if(k==='id' || data[k]===null){

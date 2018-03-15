@@ -542,9 +542,9 @@ xiaolan-router@^1.0.2:
   version "1.0.4"
   resolved "https://registry.npmjs.org/xiaolan-router/-/xiaolan-router-1.0.4.tgz#cb123a592c8e6753dfde7eb3e3b79acf627d2235"
 
-xiaolan@^1.6.20:
-  version "1.6.20"
-  resolved "https://registry.npmjs.org/xiaolan/-/xiaolan-1.6.20.tgz#8148f244eb6daf0ad130141e8c35d00e153597b7"
+xiaolan@^1.6.23:
+  version "1.6.23"
+  resolved "https://registry.npmjs.org/xiaolan/-/xiaolan-1.6.23.tgz#6b311ea09f50b7a8893938b52ce51e4d4dd93889"
   dependencies:
     async "^2.5.0"
     colors "^1.1.2"

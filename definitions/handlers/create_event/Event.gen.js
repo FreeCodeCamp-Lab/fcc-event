@@ -55,7 +55,7 @@ class Event {
 
   }
 
-  static pick(source, path, type=null, defaultValue=null){
+  static pick(source, path, type=null, defaultValue=null, memberType=null){
     let paths = path.split('.');
     let tmp = source;
     for(let k in paths){
@@ -80,6 +80,17 @@ class Event {
       case 'number':
       case 'enum':
         tmp = 1*tmp;
+        break;
+      case 'array':
+        if(typeof tmp === 'string'){
+          tmp = tmp.split(',');
+        }
+        if (memberType === 'number') {
+          let len = tmp.length;
+          for (let i = 0; i < len; i++) {
+            tmp[i] = 1 * tmp[i];
+          }
+        }
         break;
     }
     return (defaultValue && (undefined===tmp)) ? defaultValue: tmp;

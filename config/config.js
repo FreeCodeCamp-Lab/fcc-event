@@ -5,6 +5,7 @@
 const fs = require('fs');
 const env = require('dotenvr').load();
 Object.assign(process.env, env);
+process.env.DB_NAME = 'fcc_event';
 const config = {
   port: env['PORT'] || process.env['PORT'],
   cors: env['CORS'] || process.env['CORS'],
