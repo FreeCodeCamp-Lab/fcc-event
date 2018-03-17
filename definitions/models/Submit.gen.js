@@ -9,6 +9,7 @@ class Submit {
     this.eventID = (data.eventID||data.event_id)||0;
     this.userID = (data.userID||data.user_id)||0;
     this.status = (data.status||data.status)||0;
+    this.submitTime = (data.submitTime||data.submit_time)||0;
     this.createTime = (data.createTime||data.create_time)||0;
     this.updateTime = (data.updateTime||data.update_time)||0;
   }
@@ -255,6 +256,9 @@ class Submit {
     if(this.status !== null && !(typeof this.status==='number' && this.status>=0 && this.status<=255)){
       throw new Error('attribute status(status) must be a number in [0,255]');
     }
+    if(this.submitTime !== null && !(typeof this.submitTime==='number' && this.submitTime>=0 && this.submitTime<=18014398509481982)){
+      throw new Error('attribute submitTime(submit_time) must be a number in [0,18014398509481982]');
+    }
     if(this.createTime !== null && !(typeof this.createTime==='number' && this.createTime>=0 && this.createTime<=18014398509481982)){
       throw new Error('attribute createTime(create_time) must be a number in [0,18014398509481982]');
     }
@@ -338,6 +342,7 @@ const FieldMap = {
   event_id: 'eventID',
   user_id: 'userID',
   status: 'status',
+  submit_time: 'submitTime',
   create_time: 'createTime',
   update_time: 'updateTime',
 };
@@ -347,6 +352,7 @@ const KeyMap = {
   eventID: 'event_id',
   userID: 'user_id',
   status: 'status',
+  submitTime: 'submit_time',
   createTime: 'create_time',
   updateTime: 'update_time',
 };

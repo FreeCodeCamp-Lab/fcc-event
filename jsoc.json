@@ -193,6 +193,15 @@
               0,
               9007199254740991
             ]
+          },
+          "submitTime": {
+            "_type": "number",
+            "_default": 0,
+            "_desc": "报名时间 ",
+            "_range": [
+              0,
+              9007199254740991
+            ]
           }
         },
         "headers": {
@@ -226,6 +235,9 @@
                   "_type": "number"
                 },
                 "status": {
+                  "_type": "number"
+                },
+                "submitTime": {
                   "_type": "number"
                 },
                 "createTime": {
@@ -496,6 +508,9 @@
                 },
                 "status": {
                   "_type": "NOT_SURE"
+                },
+                "submitTime": {
+                  "_type": "number"
                 },
                 "createTime": {
                   "_type": "number"

@@ -6,6 +6,8 @@ const Submit = {
   eventID: 1,
   //用户ID number in:body require
   userID: 1,
+  //报名时间 number in:body
+  submitTime:0
 };
 
 module.exports = async (Submit) => {
