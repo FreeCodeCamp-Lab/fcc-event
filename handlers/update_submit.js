@@ -8,7 +8,7 @@ const Submit = {
 };
 
 module.exports = async (Submit) => {
-  console.log(Submit);
+  
   let model = await SubmitModel.fetchById(Submit.ID);
   
   if(model === null ){
@@ -16,7 +16,7 @@ module.exports = async (Submit) => {
   }
   delete Submit.ID;
   model.status = Submit.status;
-  console.log(model);
+  
   let saved = await model.update(true);
   if (saved === true) {
     return model;

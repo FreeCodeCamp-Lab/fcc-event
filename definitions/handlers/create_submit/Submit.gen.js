@@ -7,6 +7,7 @@ class Submit {
     this.eventID = options.eventID;
     this.userID = options.userID;
     this.submitTime = options.submitTime || 0;
+    this.status = options.status || 1;
     this.validate();
   }
 
@@ -21,6 +22,7 @@ class Submit {
     }
     options.userID = this.pick(req, 'body.userID', 'number', 1);
     options.submitTime = this.pick(req, 'body.submitTime', 'number', 0);
+    options.status = this.pick(req, 'body.status', 'number', 1);
     return new Submit(options);
   }
 
@@ -35,6 +37,10 @@ class Submit {
 
     if(!(!Number.isNaN(this.submitTime) && (this.submitTime>=0) && (this.submitTime<=9007199254740991))){
       throw new Error('type validate failed: [submitTime]: Number must in range 0 to 9007199254740991');
+    }
+
+    if(!(!Number.isNaN(this.status) && (this.status>=0) && (this.status<=2))){
+      throw new Error('type validate failed: [status]: Number must in range 0 to 2');
     }
 
   }
@@ -58,7 +64,7 @@ class Submit {
         if(typeof tmp === 'object'){
           tmp = JSON.stringify(tmp);
         }else{
-          tmp = tmp.toString();
+          tmp = decodeURIComponent(tmp.toString());
         }
         break;
       case 'number':

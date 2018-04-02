@@ -162,7 +162,7 @@ class Event {
     });
   }
 
-  static raw(sql='',params={}){
+  static raw(sql='',params={}, obj=true){
     if(!sql.includes('limit')){
       throw new Error('raw sql must with paging');
     }
@@ -172,11 +172,15 @@ class Event {
         if(e){
           rejected(e);
         }else{
-          let result = [];
-          for(let k in r) {
-            result.push(new Event(r[k]));
+          if (obj) {
+            let result = [];
+            for(let k in r) {
+              result.push(new Event(r[k]));
+            }
+            resolved(result);
+          }else{
+            resolved(r);
           }
-          resolved(result);
         }
       });
     });

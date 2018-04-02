@@ -423,6 +423,10 @@ require-all@0.0.3:
   version "0.0.3"
   resolved "https://registry.npmjs.org/require-all/-/require-all-0.0.3.tgz#051e192246c00d399bfe6164bc4e810bc588e01a"
 
+right-pad@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/right-pad/-/right-pad-1.0.1.tgz#8ca08c2cbb5b55e74dafa96bf7fd1a27d568c8d0"
+
 safe-buffer@5.1.1, safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.1"
   resolved "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
@@ -532,9 +536,9 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-xiaolan-db@^1.2.15:
-  version "1.2.15"
-  resolved "https://registry.npmjs.org/xiaolan-db/-/xiaolan-db-1.2.15.tgz#f8534611b14c4e11e9635e6a354b6cce37ccc1db"
+xiaolan-db@^1.2.16:
+  version "1.2.16"
+  resolved "https://registry.npmjs.org/xiaolan-db/-/xiaolan-db-1.2.16.tgz#5d37d267a78eaa42d49c9af04772d8ec62ba8931"
   dependencies:
     fy-mysql "^0.2.13"
 
@@ -542,9 +546,9 @@ xiaolan-router@^1.0.2:
   version "1.0.4"
   resolved "https://registry.npmjs.org/xiaolan-router/-/xiaolan-router-1.0.4.tgz#cb123a592c8e6753dfde7eb3e3b79acf627d2235"
 
-xiaolan@^1.6.27:
-  version "1.6.27"
-  resolved "https://registry.npmjs.org/xiaolan/-/xiaolan-1.6.27.tgz#51b0a7b9cbaf094f793169bf47b4a9200340ad9e"
+xiaolan@^1.6.29:
+  version "1.6.29"
+  resolved "https://registry.npmjs.org/xiaolan/-/xiaolan-1.6.29.tgz#a89884215c5b386e007504de99546bb06424a5ce"
   dependencies:
     async "^2.5.0"
     colors "^1.1.2"
@@ -553,6 +557,7 @@ xiaolan@^1.6.27:
     easymysql "^0.2.7"
     fy-mysql "^0.2.13"
     redis "^2.2.5"
+    right-pad "^1.0.1"
     serve-static "^1.9.3"
-    xiaolan-db "^1.2.15"
+    xiaolan-db "^1.2.16"
     xiaolan-router "^1.0.2"

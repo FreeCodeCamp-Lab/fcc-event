@@ -74,7 +74,13 @@
           "type": {
             "_type": "enum",
             "_default": 1,
-            "_desc": "类型 "
+            "_desc": "类型 ",
+            "_options": {
+              "0": "unknown",
+              "1": "小活动",
+              "2": "专场活动",
+              "3": "大型活动"
+            }
           },
           "desc": {
             "_type": "string",
@@ -202,6 +208,15 @@
               0,
               9007199254740991
             ]
+          },
+          "status": {
+            "_type": "number",
+            "_default": 1,
+            "_desc": "状态 ",
+            "_range": [
+              0,
+              2
+            ]
           }
         },
         "headers": {
@@ -264,36 +279,6 @@
               "data": null
             },
             {
-              "code": 1001401001,
-              "message": "[UNAUTHORIZED]未授权: ",
-              "data": null
-            },
-            {
-              "code": 1001401002,
-              "message": "[AUTHORIZED_INVALID]授权错误: ",
-              "data": null
-            },
-            {
-              "code": 1001401001,
-              "message": "[UNAUTHORIZED]未授权: ",
-              "data": null
-            },
-            {
-              "code": 1001401002,
-              "message": "[AUTHORIZED_INVALID]授权错误: ",
-              "data": null
-            },
-            {
-              "code": 1001401001,
-              "message": "[UNAUTHORIZED]未授权: ",
-              "data": null
-            },
-            {
-              "code": 1001401002,
-              "message": "[AUTHORIZED_INVALID]授权错误: ",
-              "data": null
-            },
-            {
               "code": -1,
               "message": "[INTERNAL_ERROR]Internal Error: 写入数据错误写入数据错误写入数据错误写入数据错误",
               "data": null
@@ -343,7 +328,13 @@
           "type": {
             "_type": "enum",
             "_default": 0,
-            "_desc": "类型 "
+            "_desc": "类型 ",
+            "_options": {
+              "0": "unknown",
+              "1": "小活动",
+              "2": "专场活动",
+              "3": "大型活动"
+            }
           },
           "desc": {
             "_type": "string",
@@ -427,16 +418,6 @@
               "data": null
             },
             {
-              "code": 1001401001,
-              "message": "[UNAUTHORIZED]未授权: ",
-              "data": null
-            },
-            {
-              "code": 1001401002,
-              "message": "[AUTHORIZED_INVALID]授权错误: ",
-              "data": null
-            },
-            {
               "code": 1001404001,
               "message": "[EVENT_NOT_FOUND]没有找到活动详情: ID不对?ID不对?",
               "data": null
@@ -473,7 +454,12 @@
           "status": {
             "_type": "enum",
             "_default": 1,
-            "_desc": "状态 "
+            "_desc": "状态 ",
+            "_options": {
+              "0": "unknown",
+              "1": "报名",
+              "2": "签到"
+            }
           }
         },
         "headers": {
@@ -507,7 +493,7 @@
                   "_type": "number"
                 },
                 "status": {
-                  "_type": "NOT_SURE"
+                  "_type": "number"
                 },
                 "submitTime": {
                   "_type": "number"
@@ -536,46 +522,6 @@
               "data": null
             },
             {
-              "code": 1001401001,
-              "message": "[UNAUTHORIZED]未授权: ",
-              "data": null
-            },
-            {
-              "code": 1001401002,
-              "message": "[AUTHORIZED_INVALID]授权错误: ",
-              "data": null
-            },
-            {
-              "code": 1001401001,
-              "message": "[UNAUTHORIZED]未授权: ",
-              "data": null
-            },
-            {
-              "code": 1001401002,
-              "message": "[AUTHORIZED_INVALID]授权错误: ",
-              "data": null
-            },
-            {
-              "code": 1001401001,
-              "message": "[UNAUTHORIZED]未授权: ",
-              "data": null
-            },
-            {
-              "code": 1001401002,
-              "message": "[AUTHORIZED_INVALID]授权错误: ",
-              "data": null
-            },
-            {
-              "code": 1001401001,
-              "message": "[UNAUTHORIZED]未授权: ",
-              "data": null
-            },
-            {
-              "code": 1001401002,
-              "message": "[AUTHORIZED_INVALID]授权错误: ",
-              "data": null
-            },
-            {
               "code": 1001404002,
               "message": "[SUBMIT_NOT_FOUND]没找到报名记录: ID不对?",
               "data": null
@@ -586,6 +532,122 @@
               "data": null
             }
           ]
+        }
+      }
+    },
+    "get_event_list": {
+      "name": "get_event_list",
+      "desc": "get_event_list",
+      "group": "",
+      "request": {
+        "method": "get",
+        "path": "/event",
+        "query": {
+          "name": {
+            "_type": "string",
+            "_default": "",
+            "_desc": "名字包含 ",
+            "_length": [
+              0,
+              10
+            ]
+          },
+          "type": {
+            "_type": "enum",
+            "_default": "",
+            "_desc": "类型 ",
+            "_options": {
+              "0": "unknown",
+              "1": "小活动",
+              "2": "专场活动",
+              "3": "大型活动"
+            }
+          },
+          "page": {
+            "_type": "number",
+            "_default": 1,
+            "_desc": "页码 ",
+            "_range": [
+              1,
+              999
+            ]
+          }
+        },
+        "params": {},
+        "body": {}
+      },
+      "response": {
+        "body": {
+          "success": [
+            {
+              "code": {
+                "_type": "number",
+                "_assert": 200
+              },
+              "data": {
+                "data": [
+                  {
+                    "id": {
+                      "_type": "number"
+                    },
+                    "name": {
+                      "_type": "string"
+                    },
+                    "date": {
+                      "_type": "string"
+                    },
+                    "type": {
+                      "_type": "number"
+                    },
+                    "desc": {
+                      "_type": "string"
+                    },
+                    "place": {
+                      "_type": "number"
+                    },
+                    "createTime": {
+                      "_type": "number"
+                    },
+                    "updateTime": {
+                      "_type": "number"
+                    }
+                  }
+                ],
+                "total": [
+                  {
+                    "id": {
+                      "_type": "number"
+                    },
+                    "name": {
+                      "_type": "string"
+                    },
+                    "date": {
+                      "_type": "string"
+                    },
+                    "type": {
+                      "_type": "number"
+                    },
+                    "desc": {
+                      "_type": "string"
+                    },
+                    "place": {
+                      "_type": "number"
+                    },
+                    "createTime": {
+                      "_type": "number"
+                    },
+                    "updateTime": {
+                      "_type": "number"
+                    }
+                  }
+                ]
+              },
+              "message": {
+                "_type": "string"
+              }
+            }
+          ],
+          "failed": []
         }
       }
     },
@@ -608,18 +670,7 @@
             ]
           }
         },
-        "body": {},
-        "headers": {
-          "token": {
-            "_type": "string",
-            "_default": "token",
-            "_desc": "秘钥 ",
-            "_length": [
-              1,
-              32
-            ]
-          }
-        }
+        "body": {}
       },
       "response": {
         "body": {
@@ -661,36 +712,6 @@
             }
           ],
           "failed": [
-            {
-              "code": 1001401001,
-              "message": "[UNAUTHORIZED]未授权: ",
-              "data": null
-            },
-            {
-              "code": 1001401002,
-              "message": "[AUTHORIZED_INVALID]授权错误: ",
-              "data": null
-            },
-            {
-              "code": 1001401001,
-              "message": "[UNAUTHORIZED]未授权: ",
-              "data": null
-            },
-            {
-              "code": 1001401002,
-              "message": "[AUTHORIZED_INVALID]授权错误: ",
-              "data": null
-            },
-            {
-              "code": 1001401001,
-              "message": "[UNAUTHORIZED]未授权: ",
-              "data": null
-            },
-            {
-              "code": 1001401002,
-              "message": "[AUTHORIZED_INVALID]授权错误: ",
-              "data": null
-            },
             {
               "code": 1001404001,
               "message": "[EVENT_NOT_FOUND]没有找到活动详情: ID不对?ID不对?",

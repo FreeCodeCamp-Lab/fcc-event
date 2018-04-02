@@ -123,7 +123,7 @@ class Attachment {
     });
   }
 
-  static raw(sql='',params={}){
+  static raw(sql='',params={}, obj=true){
     if(!sql.includes('limit')){
       throw new Error('raw sql must with paging');
     }
@@ -133,11 +133,15 @@ class Attachment {
         if(e){
           rejected(e);
         }else{
-          let result = [];
-          for(let k in r) {
-            result.push(new Attachment(r[k]));
+          if (obj) {
+            let result = [];
+            for(let k in r) {
+              result.push(new Attachment(r[k]));
+            }
+            resolved(result);
+          }else{
+            resolved(r);
           }
-          resolved(result);
         }
       });
     });

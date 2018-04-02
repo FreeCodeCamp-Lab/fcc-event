@@ -2,24 +2,37 @@
 
 
 
-class Auth {
+class Query {
   constructor(options={}){
-    this.token = options.token;
+    this.name = options.name || '';
+    this.type = options.type || 0;
+    this.page = options.page || 1;
     this.validate();
   }
 
   static fromRequest(req){
     let options={};
-    if(!this.pick(req, 'headers.token')){
-      throw new Error("Requirement : [token]");
-    }
-    options.token = this.pick(req, 'headers.token', 'string', 'token');
-    return new Auth(options);
+    options.name = this.pick(req, 'query.name', 'string', '');
+    options.type = this.pick(req, 'query.type', 'enum', 0);
+    options.page = this.pick(req, 'query.page', 'number', 1);
+    return new Query(options);
+  }
+
+  getType(){
+    return ({"0":"unknown","1":"小活动","2":"专场活动","3":"大型活动"})[this.type];
   }
 
   validate(){
-    if(!((typeof this.token === 'string') && (this.token.length>=1) && (this.token.length<=32))){
-      throw new Error('type validate failed: [token]: String length must between 1 to 32');
+    if(!((typeof this.name === 'string') && (this.name.length>=0) && (this.name.length<=10))){
+      throw new Error('type validate failed: [name]: String length must between 0 to 10');
+    }
+
+    if(({"0":"unknown","1":"小活动","2":"专场活动","3":"大型活动"})[this.type] === undefined){
+      throw new Error('type validate failed: [type]: type can only choosing from [" 0 -> unknown  , 1 -> 小活动  , 2 -> 专场活动  , 3 -> 大型活动  ,"]');
+    }
+
+    if(!(!Number.isNaN(this.page) && (this.page>=1) && (this.page<=999))){
+      throw new Error('type validate failed: [page]: Number must in range 1 to 999');
     }
 
   }
@@ -66,4 +79,4 @@ class Auth {
   }
 }
 
-module.exports = Auth;
+module.exports = Query;
