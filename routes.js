@@ -12,6 +12,7 @@ router.group('event').use('gate')
   .put('/submit/{ID}', 'update_submit');
 
 router.reset().group('event')
+  .get('/{eventID}/submit_stat', 'get_event_submit_daily')
   .get('', 'get_event_list')
   .get('/{ID}', 'event_profile');
 
