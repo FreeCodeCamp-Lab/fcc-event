@@ -24,7 +24,7 @@ module.exports = async (Query) => {
   if (!!Query.name) {
     sql += 'and name like "%' + Query.name + '%"';
   }
-  sql += 'order by id desc limit ' + (Query.page - 1) * PAGE_SIZE + ',' + PAGE_SIZE;
+  sql += 'order by `date` desc limit ' + (Query.page - 1) * PAGE_SIZE + ',' + PAGE_SIZE;
   let count = await EventModel.raw(sql.replace('*', 'count(*) c'), Query, false);
   if (count.length) {
     count = count[0].c;
